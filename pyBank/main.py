@@ -25,15 +25,23 @@ with open(csv_path) as csvfile:
     # Read the header row first
     csv_header = next(csvreader)
     
+    # Read the second row next
+    csv_first_row = next(csvreader)
+   
+    # append the date of the 2nd row
+    date.append(csv_first_row[0])
+    # append the Profit/Losses data of the 2nd row
+    profit_losses.append(float(csv_first_row[1]))
+
     # Read through each row of data after the header 
     for anyrow in csvreader:
         
-        # append the date from the data to the data list
+        # append the date data to list
         date.append(anyrow[0])
         
+        # append the Profit/Losses data list
         profit_losses.append(float(anyrow[1]))
         
-        csv_header = next(csvreader)
         # convert the Profit/Losses data into a float and append it to the profit_losses list
         change_in_profit.append(float(anyrow[1]) - previous_profit)
         previous_profit = float(anyrow[1])
@@ -49,10 +57,9 @@ print("\nTotal: $"+str(total))
 
 
 #the average change in profit is calculated by dividing the total change with the total number
-#change_in_profit.remove(0)
 total_change_in_profit = sum(change_in_profit)
-#print(total_change_in_profit)
-average = round(total_change_in_profit/(len(date)-1))
+print(total_change_in_profit)
+average = round(total_change_in_profit/(len(change_in_profit)))
 
 #print the average change in profit
 print("\nAverage Change: $" + str(average))
