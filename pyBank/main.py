@@ -15,7 +15,7 @@ change_in_profit = []
 #Set path for the file
 csv_path = os.path.join("Resources","budget_data.csv")
 
-previous_profit = 0
+
 #open the file 
 with open(csv_path) as csvfile:
     
@@ -30,9 +30,13 @@ with open(csv_path) as csvfile:
    
     # append the date of the 2nd row
     date.append(csv_first_row[0])
+    
     # append the Profit/Losses data of the 2nd row
     profit_losses.append(float(csv_first_row[1]))
-
+    
+    # initial profit/loss
+    previous_profit = profit_losses[0]
+    
     # Read through each row of data after the header 
     for anyrow in csvreader:
         
@@ -52,31 +56,30 @@ total_months = len(date)
 print("\nTotal Months: " + str(total_months))
 
 # calculate the total profit and losses & print the result
-total = sum(profit_losses)
+total = round(sum(profit_losses))
 print("\nTotal: $"+str(total))
 
 
 #the average change in profit is calculated by dividing the total change with the total number
 total_change_in_profit = sum(change_in_profit)
-print(total_change_in_profit)
-average = round(total_change_in_profit/(len(change_in_profit)))
+average = round(total_change_in_profit/(len(change_in_profit)),2)
 
 #print the average change in profit
 print("\nAverage Change: $" + str(average))
 
 
 # determine the maximum change in profit 
-greatest_increase = max(change_in_profit)
+greatest_increase = round(max(change_in_profit))
 # determine the index value of the maximum change in profit 
 x = change_in_profit.index(greatest_increase)
 # print the date & value of for the maximum change in profit 
-print("\nGreatest Increase in Profits: " + date[x] + " ($" + str(greatest_increase) + ")")
+print("\nGreatest Increase in Profits: " + date[x+1] + " ($" + str(greatest_increase) + ")")
 
 
 # determine the biggest loss in profit  
-greatest_decrease = min(change_in_profit)
+greatest_decrease = round(min(change_in_profit))
 # determine the index value of the biggest loss in profit
 y = change_in_profit.index(greatest_decrease)
 # print the date & value of for the biggest loss in profit
-print("\nGreatest Decrease in Profits: " + date[y] + " ($" + str(greatest_decrease) + ")")
+print("\nGreatest Decrease in Profits: " + date[y+1] + " ($" + str(greatest_decrease) + ")")
 
