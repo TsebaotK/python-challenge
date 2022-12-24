@@ -2,7 +2,6 @@
 
 This python script is written to complete the PyBank and PyPoll challenge.
 In the PyBank Challenge, a python script is written to analyze the financial records from a provided financial data set. It analyzes the tasks written below and prints the output in gitbash/ terminal.
-
 •	The code is first written to read the data from the budget_data CSV file. 
 •	It then calculates the total number of months included in the dataset.
 •	It calculates and prints out the total profit and losses over the entire period.
