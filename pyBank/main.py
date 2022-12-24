@@ -28,10 +28,10 @@ with open(csv_path) as csvfile:
     # Read the second row next
     csv_first_row = next(csvreader)
    
-    # append the date of the 2nd row
+    # append the date of the 2nd row into the date list
     date.append(csv_first_row[0])
     
-    # append the Profit/Losses data of the 2nd row
+    # append the Profit/Losses data of the 2nd row into the profit_losses list
     profit_losses.append(float(csv_first_row[1]))
     
     # initial profit/loss
@@ -51,16 +51,16 @@ with open(csv_path) as csvfile:
         previous_profit = float(anyrow[1])
 
 
-#calulate and print the total number months & print the result       
+#calulate and print the total number months included in the dataset        
 total_months = len(date)
 print("\nTotal Months: " + str(total_months))
 
-# calculate the total profit and losses & print the result
+# calculate & print the total amount of profit and losses
 total = round(sum(profit_losses))
 print("\nTotal: $"+str(total))
 
 
-#the average change in profit is calculated by dividing the total change with the total number
+# calculate the average change in profit by dividing the total amount of change in profit with the data count
 total_change_in_profit = sum(change_in_profit)
 average = round(total_change_in_profit/(len(change_in_profit)),2)
 
@@ -68,18 +68,47 @@ average = round(total_change_in_profit/(len(change_in_profit)),2)
 print("\nAverage Change: $" + str(average))
 
 
-# determine the maximum change in profit 
+# determine the maximum increase in profit 
 greatest_increase = round(max(change_in_profit))
-# determine the index value of the maximum change in profit 
+# determine the index value of the maximum profit increase
 x = change_in_profit.index(greatest_increase)
 # print the date & value of for the maximum change in profit 
 print("\nGreatest Increase in Profits: " + date[x+1] + " ($" + str(greatest_increase) + ")")
 
 
-# determine the biggest loss in profit  
+# determine the greatest loss in profit  
 greatest_decrease = round(min(change_in_profit))
 # determine the index value of the biggest loss in profit
 y = change_in_profit.index(greatest_decrease)
 # print the date & value of for the biggest loss in profit
 print("\nGreatest Decrease in Profits: " + date[y+1] + " ($" + str(greatest_decrease) + ")")
 
+
+#--------------------------------------------------------------------------------------------------
+
+
+#Set path for the output file
+output_file = os.path.join("analysis","budget_data.txt")
+ 
+#  Open the output file
+with open(output_file, "w") as textfile:
+    
+    textfile.write("\nFinancial Analysis")
+    textfile.write("\n---------------------------------------------------------------------")
+
+    # Write the total number of months
+    textfile.write("\nTotal Months: " + str(total_months))
+  
+    # Write the total profit and losses
+    textfile.write("\nTotal: $"+str(total))
+
+   # Write the average change in profit
+    textfile.write("\nAverage Change: $" + str(average))
+
+    # Write the maximum change in profit
+    textfile.write(("\nGreatest Increase in Profits: " + date[x+1] + " ($" + str(greatest_increase) + ")"))
+
+    # Write the biggest loss in profit 
+    textfile.write("\nGreatest Decrease in Profits: " + date[y+1] + " ($" + str(greatest_decrease) + ")")
+    
+  

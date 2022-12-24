@@ -81,3 +81,43 @@ elif max(Charles_Casper_Stockham_vote, Diana_DeGette_vote, Raymon_Anthony_Doane_
     print ("\n Winner: Raymon Anthony Doane")
 
 print("\n---------------------------------------------------------------------")   
+
+
+
+#--------------------------------------------------------------------------------------------------
+
+#Set path for the output file
+output_file = os.path.join("analysis","election_data.txt")
+ 
+#  Open the output file
+with open(output_file, "w") as textfile:
+    
+    textfile.write("\nElection Results")
+    textfile.write("\n---------------------------------------------------------------------")
+
+    # Write the total number of casted vote 
+    textfile.write("\n Total Votes: " + str(total_vote_cast))
+  
+    textfile.write("\n---------------------------------------------------------------------")
+
+
+    # Write the percentage and total number of vote Charles Casper Stockham got
+    textfile.write("\n Charles Casper Stockham: " + str(Charles_Casper_Stockham_perentage) + "% (" + str(Charles_Casper_Stockham_vote) + ")")
+
+    # Write the percentage and total number of vote Diana DeGette got 
+    textfile.write("\n Diana DeGette: " + str(Diana_DeGette_perentage) + "% (" + str(Diana_DeGette_vote) + ")")
+
+    # Write the percentage and total number of vote Raymon Anthony Doane got 
+    textfile.write("\n Raymon Anthony Doane: " + str(Raymon_Anthony_Doane_perentage) + "% (" + str(Raymon_Anthony_Doane_vote) + ")")
+
+    textfile.write("\n---------------------------------------------------------------------")
+
+    # Write name of the person with the most/ maximum vote count
+    if max(Charles_Casper_Stockham_vote, Diana_DeGette_vote, Raymon_Anthony_Doane_vote) == Charles_Casper_Stockham_vote : 
+        textfile.write ("\n Winner: Charles Casper Stockham")
+    elif max(Charles_Casper_Stockham_vote, Diana_DeGette_vote, Raymon_Anthony_Doane_vote) == Diana_DeGette_vote : 
+        textfile.write ("\n Winner: Diana DeGette")
+    elif max(Charles_Casper_Stockham_vote, Diana_DeGette_vote, Raymon_Anthony_Doane_vote) == Raymon_Anthony_Doane_vote : 
+        textfile.write ("\n Winner: Raymon Anthony Doane")
+    
+    textfile.write("\n---------------------------------------------------------------------")
